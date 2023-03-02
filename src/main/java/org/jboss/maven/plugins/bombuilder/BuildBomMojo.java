@@ -101,6 +101,12 @@ public class BuildBomMojo
     @Parameter
     boolean usePropertiesForVersion;
 
+  /**
+   * The scope to use for the dependencies
+   */
+  @Parameter
+    private String scope;
+
     /**
      * The current project
      */
@@ -188,6 +194,9 @@ public class BuildBomMojo
             dep.setGroupId( artifact.getGroupId() );
             dep.setArtifactId( artifact.getArtifactId() );
             dep.setVersion( artifact.getVersion() );
+            if (scope != null && scope.length() > 0) {
+              dep.setScope(scope);
+            }
             if ( !StringUtils.isEmpty( artifact.getClassifier() ))
             {
                 dep.setClassifier( artifact.getClassifier() );

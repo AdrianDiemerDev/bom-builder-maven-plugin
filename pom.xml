@@ -20,20 +20,20 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.jboss</groupId>
-    <artifactId>jboss-parent</artifactId>
-    <version>19</version>
+    <groupId>com.intrafind</groupId>
+    <artifactId>if-meta-parent-pom</artifactId>
+    <version>1046.1</version>
   </parent>
 
-  <groupId>org.jboss.maven.plugins</groupId>
+  <groupId>com.intrafind.plugins</groupId>
   <artifactId>bom-builder-maven-plugin</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <mavenVersion>3.0.4</mavenVersion>
-    <mavenPluginPluginVersion>3.2</mavenPluginPluginVersion>
+    <mavenPluginPluginVersion>3.6.0</mavenPluginPluginVersion>
   </properties>
 
   <dependencies>
@@ -114,44 +114,5 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <profiles>
-    <profile>
-      <id>run-its</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-invoker-plugin</artifactId>
-            <version>1.8</version>
-            <executions>
-              <execution>
-                <id>integration-tests</id>
-                <goals>
-                  <goal>install</goal>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-                  <debug>true</debug>
-                  <goals>
-                    <goal>clean</goal>
-                    <goal>generate-resources</goal>
-                  </goals>
-                  <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-                  <mavenHome>${it.maven.home}</mavenHome>
-                  <pomIncludes>
-                    <pomInclude>*/pom.xml</pomInclude>
-                  </pomIncludes>
-                  <projectsDirectory>src/it</projectsDirectory>
-                  <postBuildHookScript>verify</postBuildHookScript>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
 
